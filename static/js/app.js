@@ -48,6 +48,10 @@ function optionChanged(idNum) {
             hovertext: otu_labels
         }];
 
+        var barLayout = {
+            title: "<b>Top 10 OTUs</b>"
+        }
+
         Plotly.newPlot("bar", barGraph);
 
         // Create bubble chart that displays each sample for the subject
@@ -63,7 +67,8 @@ function optionChanged(idNum) {
         }];
 
         var layout = {
-            xaxis: {title: "OTU ID"}
+            xaxis: {title: "OTU ID"},
+            title: "<b>Values of All OTUs</b>"
         };
 
         Plotly.newPlot("bubble", bubbleChart, layout);
@@ -76,7 +81,7 @@ function optionChanged(idNum) {
             },
             value: metadata.wfreq,
             title: {
-                text: "<span style='font-size: 20px;'>Belly Button Washing Frequency</span><br> (Scrubs per Week)"
+                text: "<span style='font-size: 20px;'><b>Belly Button Washing Frequency</b></span><br> Scrubs per Week"
             },
             type: "indicator",
             mode: "gauge+number",
