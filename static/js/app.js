@@ -52,7 +52,7 @@ function optionChanged(idNum) {
             title: "<b>Top 10 OTUs</b>"
         }
 
-        Plotly.newPlot("bar", barGraph);
+        Plotly.newPlot("bar", barGraph, barLayout);
 
         // Create bubble chart that displays each sample for the subject
         var bubbleChart = [{
