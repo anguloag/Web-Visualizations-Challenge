@@ -63,6 +63,6 @@ d3.json("samples.json").then(function(data) {
     });
     
     // Use optionChanged function to set default plots
-    optionChanged(data);
+    optionChanged("940");
 
 });
