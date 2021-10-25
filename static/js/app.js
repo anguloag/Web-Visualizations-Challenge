@@ -31,7 +31,7 @@ function optionChanged(idNum) {
 
         // Create horizontal bar chart with top 10 OTUs found for the subject
         // -- lables on y axis for horizontal chart
-        let barGraph = [{
+        var barGraph = [{
             x: sample_values,
             y: otu_ids.map(function(otuID) {return `OTU ${otuID}`;}),
             type: "bar",
