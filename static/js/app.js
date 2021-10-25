@@ -10,12 +10,14 @@ function optionChanged(idNum) {
             return findMeta.id.toString() == idNum;
         }));
         metadata = metadata[0];
+        console.log(metadata);
 
         // Pull sample values for matching subject ID Number
         samples = Object.values(data.samples.filter(function(findSample) {
             return findSample.id.toString() == idNum;
         }));
         samples = samples[0];
+        console.log(samples);
 
         // Sort samples by sample_values in descending order
         samples.sample_values.sort(function sortFunction(a, b) {
