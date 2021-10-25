@@ -40,9 +40,12 @@ function optionChanged(idNum) {
 
         Plotly.newPlot("bar", barGraph);
 
+        d3.select("#sample-metadata").html("");
+        Object.entries(metadata).forEach(([key, value]) => {
+            d3.select("#sample-metadata").append("p").text(`${key}: ${value}`);
+        });
 
     });
-
 
 }
 
