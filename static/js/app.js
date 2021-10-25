@@ -12,6 +12,11 @@ function optionChanged(idNum) {
         metadata = metadata[0];
         console.log(metadata);
 
+        d3.select("#sample-metadata").html("");
+        Object.entries(metadata).forEach(([key, value]) => {
+            d3.select("#sample-metadata").append("p").text(`${key}: ${value}`);
+        });
+
         // Pull sample values for matching subject ID Number
         samples = Object.values(data.samples.filter(function(findSample) {
             return findSample.id.toString() == idNum;
@@ -44,10 +49,7 @@ function optionChanged(idNum) {
 
         Plotly.newPlot("bar", barGraph);
 
-        d3.select("#sample-metadata").html("");
-        Object.entries(metadata).forEach(([key, value]) => {
-            d3.select("#sample-metadata").append("p").text(`${key}: ${value}`);
-        });
+        
 
     });
 
