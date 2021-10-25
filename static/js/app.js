@@ -4,14 +4,42 @@ function optionChanged(idNum) {
 
     // Read in samples.json with D3 library
     d3.json("samples.json").then(function(data) {
-        //console.log(data);
 
         // Pull metadata values for matching subject ID Number
-        var metadata = Object.values(data.metadata.filter(function(dataset){
-            return dataset.id.toString() == idNum;
+        metadata = Object.values(data.metadata.filter(function(findMeta) {
+            return findMeta.id.toString() == idNum;
         }));
-        console.log(metadata);
-        //metadata = metadata[0]
+        metadata = metadata[0];
+
+        // Pull sample values for matching subject ID Number
+        samples = Object.values(data.samples.filter(function(findSample) {
+            return findSample.id.toString() == idNum;
+        }));
+        samples = samples[0];
+
+        // Sort samples by sample_values in descending order
+        samples.sample_values.sort(function sortFunction(a, b) {
+            return b - a;
+        });
+
+        // Slice the top 10 values for sample_values, otu_ids, and otu_labels
+        sample_values = samples.sample_values.slice(0, 10).reverse();
+        otu_ids = samples.otu_ids.slice(0, 10).reverse();
+        otu_labels = samples.otu_labels.slice(0, 10).reverse();
+
+        // Create horizontal bar chart with top 10 OTUs found for the subject
+        // -- lables on y axis for horizontal chart
+        let barGraph = {
+            x: sample_values,
+            y: otu_ids.map(function(otuID) {return `OTU ${otuID}`;}),
+            type: "bar",
+            orientation: "h",
+            hoverinfo: "text",
+            hovertext: otu_labels
+        };
+
+        Plotly.newPlot("bar", barGraph);
+
 
     });
 
