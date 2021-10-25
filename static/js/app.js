@@ -12,6 +12,8 @@ function optionChanged(idNum) {
         metadata = metadata[0];
         console.log(metadata);
 
+        // Clear the Demographic Info under the "sample-metadata" ID, 
+        // then fill it in using the entry's key-value pairs
         d3.select("#sample-metadata").html("");
         Object.entries(metadata).forEach(([key, value]) => {
             d3.select("#sample-metadata").append("p").text(`${key}: ${value}`);
@@ -35,7 +37,6 @@ function optionChanged(idNum) {
         otu_labels = samples.otu_labels.slice(0, 10).reverse();
         console.log(sample_values, otu_ids, otu_labels);
 
-
         // Create horizontal bar chart with top 10 OTUs found for the subject
         // -- lables on y axis for horizontal chart
         var barGraph = [{
@@ -49,8 +50,24 @@ function optionChanged(idNum) {
 
         Plotly.newPlot("bar", barGraph);
 
-        
+        // Create bubble chart that displays each sample
+        var bubbleChart = [{
+            x: samples.otu_ids,
+            y: samples.sample_values,
+            text: samples.otu_labels,
+            mode: "markers",
+            marker: {
+                size: samples.sample_values,
+                color: samples.otu_ids
+            }
+        }];
 
+        var layout = {
+            xaxis: {title: "OTU ID"}
+        };
+
+        Plotly.newPlot("bubble", bubbleChart, layout);
+        
     });
 
 }
