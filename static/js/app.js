@@ -31,14 +31,14 @@ function optionChanged(idNum) {
 
         // Create horizontal bar chart with top 10 OTUs found for the subject
         // -- lables on y axis for horizontal chart
-        let barGraph = {
+        let barGraph = [{
             x: sample_values,
             y: otu_ids.map(function(otuID) {return `OTU ${otuID}`;}),
             type: "bar",
             orientation: "h",
             hoverinfo: "text",
             hovertext: otu_labels
-        };
+        }];
 
         Plotly.newPlot("bar", barGraph);
 
