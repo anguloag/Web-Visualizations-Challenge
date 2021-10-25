@@ -28,6 +28,8 @@ function optionChanged(idNum) {
         sample_values = samples.sample_values.slice(0, 10).reverse();
         otu_ids = samples.otu_ids.slice(0, 10).reverse();
         otu_labels = samples.otu_labels.slice(0, 10).reverse();
+        console.log(sample_values, otu_ids, otu_labels);
+
 
         // Create horizontal bar chart with top 10 OTUs found for the subject
         // -- lables on y axis for horizontal chart
