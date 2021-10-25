@@ -1,12 +1,17 @@
 // Function for chosing Test Subject ID Number in dropdown menu (optionChanged)
-function optionChanged(value) {
-    console.log(value);
+function optionChanged(idNum) {
+    console.log(idNum);
 
-
-    // Read in samples.jason with D3 library
+    // Read in samples.json with D3 library
     d3.json("samples.json").then(function(data) {
-        console.log(data);
+        //console.log(data);
 
+        // Pull metadata values for matching subject ID Number
+        var metadata = Object.values(data.metadata.filter(function(dataset){
+            return dataset.id.toString() == idNum;
+        }));
+        console.log(metadata);
+        //metadata = metadata[0]
 
     });
 
@@ -24,6 +29,7 @@ d3.json("samples.json").then(function(data) {
         dropdownMenu.append("option").text(name);
     });
     
+    // Use optionChanged function to set default plots
     optionChanged(data);
 
 });
