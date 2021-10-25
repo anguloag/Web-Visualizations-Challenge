@@ -50,7 +50,7 @@ function optionChanged(idNum) {
 
         Plotly.newPlot("bar", barGraph);
 
-        // Create bubble chart that displays each sample
+        // Create bubble chart that displays each sample for the subject
         var bubbleChart = [{
             x: samples.otu_ids,
             y: samples.sample_values,
@@ -67,6 +67,36 @@ function optionChanged(idNum) {
         };
 
         Plotly.newPlot("bubble", bubbleChart, layout);
+
+        // BONUS: Create gauge chart to plot weekly washing frequency for the subject
+        var gaugeChart = [{
+            domain: {
+                x: [0, 1], 
+                y: [0, 1]
+            },
+            value = metadata.wfreq,
+            title: {
+                text: "<span style='font-size: 20px;'>Belly Button Washing Frequency</span><br> (Scrubs per Week)"
+            },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: {
+                axis: {range: [null, 9]},
+                steps: [
+                    {range: [0, 1], color: "rgb(238, 240, 235)"},
+                    {range: [1, 2], color: "rgb(205, 217, 189)"},
+                    {range: [2, 3], color: "rgb(186, 204, 161)"},
+                    {range: [3, 4], color: "rgb(168, 191, 136)"},
+                    {range: [4, 5], color: "rgb(152, 181, 112)"},
+                    {range: [5, 6], color: "rgb(136, 171, 89)"},
+                    {range: [6, 7], color: "rgb(123, 163, 70)"},
+                    {range: [7, 8], color: "rgb(109, 153, 50)"},
+                    {range: [8, 9], color: "rgb(96, 143, 34)"},
+                ]
+            }
+        }];
+
+        Plotly.newPlot("gauge", gaugeChart);
         
     });
 
